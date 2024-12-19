@@ -44,18 +44,36 @@ def rechercheDichoRec(T, x, left=0, right=None):
         return rechercheDichoRec(T, x, left, mid - 1)
     
     
-T = genererTab(1000000,1000000)
+def compare_search_complexities(T, TT, n=10):
+    with open("complexity.csv", "w") as a:
+        a.write("VALUE, SEQ, DICHO\n")
+        for i in range(100000):
+            track1 = sum(tu.track_time(lambda: rechercheDichoRec(TT, i)) for _ in range(n)) / n
+            track2 = sum(tu.track_time(lambda: rechercheSeq(T, i)) for _ in range(n)) / n
+            a.write(f"{i}, {track2:.5f}, {track1:.5f}\n")
 
-TT = trier(T)
+# =================================================================================
 
-# print(tu.track_time(lambda: rechercheDichoRec(TT, 100)))
-# print(tu.track_time(lambda: rechercheSeq(T, 100)))
-a = open("complexity.csv", "w")
-a.write("VALUE, SEQ, DICHO\n")
-for i in range(100000):
-    track1 = sum(tu.track_time(lambda: rechercheDichoRec(TT, i)) for _ in range(n)) / n
-    track2 = sum(tu.track_time(lambda: rechercheSeq(T, i)) for _ in range(n)) / n
-    a.write(f"{i}, {track2:.5f}, {track1:.5f}\n")
+def genererMat(n, m, k):
+    return [[random.randint(0, k) for _ in range(m)] for _ in range(n)]
 
+
+def multiplicationMat(A, B):
+    n, m, p = len(A), len(A[0]), len(B[0])
+    C = [[0] * p for _ in range(n)]
+    for i in range(n):
+        for j in range(p):
+            for k in range(m):
+                C[i][j] += A[i][k] * B[k][j]
+    return C
+
+
+with open("complexityMul.csv", "w") as a:
+    a.write("SIZE, TIME\n")
+    for i in range(5, 500):
+        A = genererMat(i, i, 30)
+        B = genererMat(i, i, 30)
+        temps = sum(tu.track_time(lambda: multiplicationMat(A, B)) for _ in range(n)) / n
+        a.write(f"{i}x{i}, {temps:.10f}\n")
 
 
