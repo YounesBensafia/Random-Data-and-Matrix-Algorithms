@@ -45,7 +45,7 @@ def rechercheDichoRec(T, x, left=0, right=None):
     
     
 def compare_search_complexities(T, TT, n=10):
-    with open("complexity.csv", "w") as a:
+    with open("Complexity_csvS/complexity.csv", "w") as a:
         a.write("VALUE, SEQ, DICHO\n")
         for i in range(100000):
             track1 = sum(tu.track_time(lambda: rechercheDichoRec(TT, i)) for _ in range(n)) / n
@@ -68,7 +68,7 @@ def multiplicationMat(A, B):
     return C
 
 def compare_multiplication_complexities():
-    with open("complexityMul.csv", "w") as a:
+    with open("Complexity_csvS/complexityMul.csv", "w") as a:
         a.write("SIZE, TIME\n")
         for i in range(5, 500):
             A = genererMat(i, i, 30)
@@ -92,7 +92,7 @@ def puissanceMat(M, n):
     return result
 
 A = genererMat(15, 15, 30)
-with open("complexityPow.csv", "w") as a:
+with open("Complexity_csvS/complexityPow.csv", "w") as a:
     a.write("POWER, TIME\n")
     for i in range(5, 100):
         temps = sum(tu.track_time(lambda: puissanceMat(A, i)) for _ in range(n)) / n
