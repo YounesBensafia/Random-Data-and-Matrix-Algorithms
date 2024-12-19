@@ -1,0 +1,14 @@
+Exercice 4.- La generation aleatoire des donnees.
+— En utilisant la fonction rand , ecrire une fonction genererTab qui permet de generer
+aleatoirement un tableau de n entiers compris entre 0 et k, 0 ≤ T[i] ≤ k.
+— Ecrire la fonction rechercheSeq qui effectue une recherche sequentielle de la valeur x dans
+le tableau T, elle retourne 1 si x se trouve dans T et 0 sinon.
+— Ecrire la fonction T rier qui permet de trier le tableau T.
+— Soit T un tableau trie. Ecrire la fonction rechercheDicho qui effectue une recherche dichotomique de la valeur x dans le tableau T, elle retourne 1 si x se trouve dans T et 0
+sinon.
+— Evaluer et comparer les complexites des deux fonction de recherches en comparant leurs
+courbes pratiques et leurs complexites theoriques.
+— Ecrire une fonction genererMat qui permet de generer aleatoirement une matrice de(n×m)
+entre 0 et k, 0 ≤ M[i][j] ≤ k.
+— Ecrire la fonction de multiplication de matrices et etudier sa complexite.
+— Etudier la complexit´e de la fonction puissanceMat qui calcul la n eme puissance d’une matrice.
