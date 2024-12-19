@@ -67,13 +67,36 @@ def multiplicationMat(A, B):
                 C[i][j] += A[i][k] * B[k][j]
     return C
 
+def compare_multiplication_complexities():
+    with open("complexityMul.csv", "w") as a:
+        a.write("SIZE, TIME\n")
+        for i in range(5, 500):
+            A = genererMat(i, i, 30)
+            B = genererMat(i, i, 30)
+            temps = sum(tu.track_time(lambda: multiplicationMat(A, B)) for _ in range(n)) / n
+            a.write(f"{i}x{i}, {temps:.10f}\n")
 
-with open("complexityMul.csv", "w") as a:
-    a.write("SIZE, TIME\n")
-    for i in range(5, 500):
-        A = genererMat(i, i, 30)
-        B = genererMat(i, i, 30)
-        temps = sum(tu.track_time(lambda: multiplicationMat(A, B)) for _ in range(n)) / n
-        a.write(f"{i}x{i}, {temps:.10f}\n")
+# =================================================================================
+
+def puissanceMat(M, n):
+
+    result = [[1 if i == j else 0 for j in range(len(M))] for i in range(len(M))]
+    base = M
+
+    while n > 0:
+        if n % 2 == 1:
+            result = multiplicationMat(result, base)
+        base = multiplicationMat(base, base)
+        n //= 2
+
+    return result
+
+A = genererMat(15, 15, 30)
+with open("complexityPow.csv", "w") as a:
+    a.write("POWER, TIME\n")
+    for i in range(5, 100):
+        temps = sum(tu.track_time(lambda: puissanceMat(A, i)) for _ in range(n)) / n
+        a.write(f"^{i}, {temps:.10f}\n")
+
 
 
